@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let universities = [
+                    {
+                        "name": "Northwest Missouri",
+                        "location": "Missouri",
+                        "ranking": "150"                        
+                    },
+                    {
+                        "name": "Texas Tech",
+                        "location": "Texas",
+                        "ranking": "100"
+                    },
+                    {
+                        "name": "SUNY Buffalo",
+                        "location": "Newyork",
+                        "ranking": "50"
+                    },                   
+                ]
+            each university in universities 
+                div(class="col-sm-2") #{university.name}
+                div(class="col-sm-2") #{university.location}
+                div(class="col-sm-2") #{university.ranking}
