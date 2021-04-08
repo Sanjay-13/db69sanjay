@@ -1,7 +1,13 @@
 var University = require('../models/university');
 // List of all Universities
-exports.university_list = function(req, res) {
-res.send('NOT IMPLEMENTED: University list');
+exports.university_list = async function(req, res) {
+        try{
+        theUniversities = await University.find();
+        res.send(theUniversities);
+        }
+        catch(err){
+        res.error(500,`{"error": ${err}}`);
+        };
 };
 // for a specific university.
 exports.university_detail = function(req, res) {
