@@ -14,8 +14,23 @@ exports.university_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: University detail: ' + req.params.id);
 };
 // Handle university create on POST.
-exports.university_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: University create POST');
+exports.university_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new University();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costumetype":"goat", "cost":12, "size":"large"}
+    document.name = req.body.name;
+    document.location = req.body.location;
+    document.ranking = req.body.ranking;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.error(500,`{"error": ${err}}`);
+    };
 };
 // Handle university delete form on DELETE.
 exports.university_delete = function(req, res) {
