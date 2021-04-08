@@ -25,3 +25,14 @@ res.send('NOT IMPLEMENTED: University delete DELETE ' + req.params.id);
 exports.university_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: University update PUT' + req.params.id);
 };
+// VIEWS
+// Handle a show all view
+exports.university_view_all_Page = async function(req, res) {
+    try{
+    theuniversities = await University.find();
+    res.render('university', { title: 'university Search Results', results: theuniversities });
+    }
+    catch(err){
+    res.error(500,`{"error": ${err}}`);
+    }
+    };
