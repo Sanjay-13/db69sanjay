@@ -116,3 +116,18 @@ exports.university_create_Page =  function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+
+// Handle building the view for updating a university.
+// query provides the id
+exports.university_update_Page =  async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await University.findById(req.query.id)
+        res.render('universityupdate', { title: 'university Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
