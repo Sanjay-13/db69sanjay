@@ -1,0 +1,21 @@
+
+block content
+  h1= title
+
+  - let universityid = toShow._id
+  - let name = toShow.name
+  - let ranking = toShow.ranking
+  - let location = toShow.location
+  div
+    div.row
+      div(class='universityAttr mr-3') university ID is:
+      div #{universityid}
+    div.row
+      div(class='universityAttr mr-3') university Type is:
+      div #{name}
+    div.row
+      div(class='universityAttr mr-3') university location is:
+      div #{location}
+    div.row
+      div(class='universityAttr mr-3') university ranking is:
+      div #{ranking}
