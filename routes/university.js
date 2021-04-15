@@ -9,5 +9,8 @@ router.get('/university/:id', university_controllers.university_detail);
 /* GET detail university page */
 router.get('/detail', university_controllers.university_view_one_Page);
 
+/* GET create university page */
+router.get('/create', university_controllers.university_create_Page);
+
 
 module.exports = router;
