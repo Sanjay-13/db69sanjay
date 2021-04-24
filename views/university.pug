@@ -1,20 +1,25 @@
 extends layout
 
 block content
-  h1= title
-
-  div(class="container-fluid")
+  - let create = `dispatch(\"/university/create\")`
+  button.btn(class="btn-primary mb-2" onclick=create) Add a university
+    h1= title
+    
+    div(class="container-fluid")
         div(class="row")
             -
                 let universities = results
-            each university in universities 
-                div(class="col-sm-2") #{university.name}
-                div(class="col-sm-2") #{university.location}
-                div(class="col-sm-2") #{university.ranking}
-                - let destination = `dispatch(\"/university/update?id=${university._id}\")`
-                div(class="row-sm-2", class="m-1") University #{university.name}(#{university.location}) is #{university.ranking}
-                    button.btn( class="btn-primary ml-1", onclick= destination) Update
+            each v in universities
+                - let destination = `dispatch(\"/university/update?id=${v._id}\")`
+                - let detail = `dispatch(\"/university/detail?id=${v._id}\")`
+                - let del = `dispatch(\"/university/delete?id=${v._id}\")`
+
+                div(class="row-sm-2" class='m-1') university #{v.name}(#{v.location}) is #{v.ranking}
+                    button(class="btn-primary ml-1", onclick=destination) Update
+                    button.btn(class="btn-success ml-1", onclick=detail) Detail
+                    button.btn(class="btn-primary ml-1", onclick=destination) Update
+                    button.btn(class="btn-danger ml-1", onclick=del) Delete
+
             script.
                 function dispatch(path){
-                window.location.href=path
-                }
+                    window.location.href = path
